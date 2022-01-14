@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import Home from './Home';
+export default class App extends React.Component {
+ 
+ state={
+  show: false,
+ }
+ 
+ showPerson = (prev) => {
+  this.setState({
+    ...prev, show: !this.state.show,
+  });
+};
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+     <>
+     {this.state.show && (
+       <Home/>)}
+        <button onClick={this.showPerson} className='btn'>{(this.state.show === true) ? "Hide" : "Show"}</button>
+
+      </>
+    );
+  }
 }
 
-export default App;
